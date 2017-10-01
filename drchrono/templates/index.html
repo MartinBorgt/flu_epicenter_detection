@@ -4,5 +4,10 @@
     <a href="{% url 'social:begin' 'drchrono' %}">
       drchrono OAuth
     </a>
+    <form id="myform" method="post" action="{% url 'social:disconnect' 'drchrono' %}5/?next={{request.path }}">
+      {% csrf_token %}
+      <input type="hidden" name="name" value="value" />
+      <a onclick="document.getElementById('myform').submit();">discon</a>
+  </form>
   </body>
 </html>

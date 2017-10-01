@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from keys import Keys
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -20,7 +21,20 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '=*l&a&rk7jmiw$3euke*z9lu-na!^j^i&ddejfik!ajqlaymmc'
+SECRET_KEY = Keys.SECRET_KEY
+
+# Configurations
+# drchrono.com
+SOCIAL_AUTH_DRCHRONO_KEY = Keys.SOCIAL_AUTH_DRCHRONO_KEY
+SOCIAL_AUTH_DRCHRONO_SECRET = Keys.SOCIAL_AUTH_DRCHRONO_SECRET
+SOCIAL_AUTH_DRCHRONO_SCOPE = ['patients:read', 'patients:write', 'clinical:read']
+SOCIAL_AUTH_DRCHRONO_LOGIN_REDIRECT_URL = '/flumap/flumap/load'
+
+# onpatient.com
+SOCIAL_AUTH_ONPATIENT_KEY = Keys.SOCIAL_AUTH_ONPATIENT_KEY
+SOCIAL_AUTH_ONPATIENT_SECRET = Keys.SOCIAL_AUTH_ONPATIENT_SECRET
+SOCIAL_AUTH_ONPATIENT_SCOPE = ['patient/*.read']
+SOCIAL_AUTH_ONPATIENT_LOGIN_REDIRECT_URL = '/flumap/flumap/findme'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -31,6 +45,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+    'flumap',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -54,6 +69,7 @@ MIDDLEWARE_CLASSES = (
 
 AUTHENTICATION_BACKENDS = (
     'social_auth_drchrono.backends.drchronoOAuth2',
+    'social_auth_drchrono.backends.onpatientOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
 
@@ -78,6 +94,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'drchrono.wsgi.application'
+
 
 
 # Database
@@ -109,3 +126,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+BASE_DIR = os.path.dirname(os.path.realpath(__file__))
+STATIC_ROOT = '/'.join(os.path.join(BASE_DIR, STATIC_URL.strip("/")).split('/'))

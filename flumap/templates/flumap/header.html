@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Martin Borgt</title>
+	<meta charset="utf-8" />
+
+    {% load staticfiles %}
+
+    <!--Thank you Bootstrap!-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'flumap/css/sidebar.css' %}" type = "text/css"/>
+	<meta name="viewport" content = "width=device-width, initial-scale=1.0">
+
+</head>
+
+<body class="body" style="background-color:#1c1c1c; color:#ccc">
+	<div class="container-fluid" style="min-height:95%; ">
+		<div class="row">
+			  <div class="col-sm-3">
+				  <br>
+				  <center>
+					<img src="{% static 'flumap/img/face.bmp' %}" class="responsive-img" style='max-height:120px;' alt="face">
+				  </center>
+			  </div>
+			  <div class="col-sm-9">
+				  <br>
+				  <center>
+				  <h3>Demonstration of detecting flu epicenters using k-means</h3>
+				  </center>
+			  </div>
+		</div><hr>
+
+		<div class="row">
+		  <div class="col-sm-3">
+		  <br>
+
+		  <br>
+
+            {% include 'flumap/includes/sidebar.html' %}
+		  </div> <!--col-sm-2-->
+		  <div class="col-sm-9">
+
+			<br><br>
+			   {% block content %}
+			   {% endblock %}
+		  </div>
+		</div>
+	</div>
+
+	<footer>
+		<div class="container-fluid" style='margin-left:15px'>
+			<p><a href="mailto:martin.borgt@gmail.com" target="blank">Contact</a> | <a href="http://www.linkedin.com/in/martinborgt" target="blank">LinkedIn</a> | <a href="http://www.github.com/MartinBorgt" target="blank">Github</a></p>
+		</div>
+	</footer>
+</body>
+
+</html>

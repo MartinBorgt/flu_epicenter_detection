@@ -1,0 +1,60 @@
+.mapmenu {
+    position: absolute;
+    top: 0;
+    /*width: 100%;*/
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background-color: #ccc;
+}
+
+.mapmenu li {
+    margin: 0px;
+    position: relative;
+    line-height: 20px;
+    display: inline-block;
+    word-wrap: break-word;
+    /*width: 100%;
+*/
+
+}
+.button {
+    background-color: #1c1c1c;
+    margin:0px;
+    color: #ccc;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width:100%;
+    height:100%;
+}
+.mapmenu li a {
+    background-color: #1c1c1c;
+    color: #ccc;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width:calc(100% - 2px);
+    height:calc(100% - 2px);
+    margin:1px;
+}
+.list-two {
+    width: 50%;
+    min-width: 110px;
+}
+.list-one {
+    width: 100%;
+    min-width: 220px;
+}
+
+.button:hover,
+.button:active,
+.button:focus{
+    color: #fff;
+}
+
+.mapmenu li a:hover,
+.mapmenu li a:active,
+.mapmenu li a:focus{
+    color: #fff;
+}

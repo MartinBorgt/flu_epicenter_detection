@@ -36,3 +36,33 @@ class drchronoOAuth2(BaseOAuth2):
 
     def get_auth_header(self, access_token):
         return {'Authorization': 'Bearer {0}'.format(access_token)}
+
+# Adjust version of drChronoOAuth2 to connect to onpatient
+class onpatientOAuth2(BaseOAuth2):
+    """
+    drchrono OAuth authentication backend
+    """
+
+    name = 'onpatient'
+    AUTHORIZATION_URL = 'https://onpatient.com/o/authorize/'
+    ACCESS_TOKEN_URL = 'https://onpatient.com/o/token/'
+    ACCESS_TOKEN_METHOD = 'POST'
+    REDIRECT_STATE = False
+
+    EXTRA_DATA = [
+        ('refresh_token', 'refresh_token'),
+        ('expires_in', 'expires_in')
+    ]
+    # TODO: setup proper token refreshing
+
+    def get_user_details(self, response):
+        """
+        Return user details from onpatient account
+        """
+        return {'username': response.get('username'),}
+
+    def user_data(self, access_token, *args, **kwargs):
+        pass
+
+    def get_auth_header(self, access_token):
+        return {'Authorization': 'Bearer {0}'.format(access_token)}

@@ -1,0 +1,69 @@
+{% extends "flumap/header.html" %}
+{% block content %}
+    {% load staticfiles %}
+
+	<link rel="stylesheet" href="{% static 'flumap/css/mapmenu.css' %}" type = "text/css"/>
+
+    <div class="row">
+        <!-- Forcing the div to take the space the menu uses -->
+        <div class="col-sm-5" style="min-width: 230px; max-width: 350px; min-height:110px;">
+            <ul  class="nav mapmenu">
+                <li class = "list-two">
+                    <!-- Decided to go with links instead of forms because no other info than clicking a button is needed
+                    <!--<form action="" method="post">
+                    {% csrf_token %}
+
+                        <input type="button" class="button" value="Generate patients">
+                    </form>-->
+                    <a href="/flumap/flumap/generate/">Generate patients</a>
+                </li>
+                <li class = "list-two">
+                    <!--<form action="" method="post">
+                    {% csrf_token %}
+
+                        <input type="button" class="button" value="Load patients">
+                    </form>-->
+                    <a href="{% url 'social:begin' 'drchrono' %}" >Load patients</a>
+                </li>
+                <li class = "list-one">
+                    <!--<form action="" method="post">
+                    {% csrf_token %}
+
+                        <input type="button" class="button" value="Randomly infect patients">
+                    </form>-->
+                    <a href="/flumap/flumap/infect">Randomly infect patients</a>
+                </li>
+                <li class = "list-one">
+                    <!--<form action="" method="post">
+                    {% csrf_token %}
+                        <input type="button" class="button" value="Find epicenters">
+                    </form>-->
+                    <a href="/flumap/flumap/mixturegaussian">Find epicenters</a>
+
+                </li>
+                <li class = "list-one">
+                    <!--<form action="" method="post">
+                    {% csrf_token %}
+                        <input type="button" class="button" value="Mark at-risk patients">
+                    </form>-->
+                    <a href="{% url 'social:begin' 'onpatient' %}" >Am I at risk?</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-sm-4">
+            {% for title, image_name in image_names %}
+                {% with 'flumap/img/'|add:image_name as image_static %}
+                    <h4>{{title}}</h4>
+                    <img src="{% static image_static %}" class="responsive-img" style='max-height:800px; border:1px solid white' alt="map">
+
+                {% endwith %}
+            {% endfor %}
+            <p>{{findme}}</p>
+
+        </div>
+    </div>
+<!--
+
+-->
+{% endblock %}
+
